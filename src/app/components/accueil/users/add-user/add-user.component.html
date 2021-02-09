@@ -1,0 +1,60 @@
+<div class="overflow-auto mt-5 container bg-light ">
+    <h1 class="bg-light">add User</h1>
+    <hr>
+    <div class="list-users shadow bg-light mt-5">
+        <form [formGroup]="registerForm" (ngSubmit)="addUser()" class="px-5 mb-4">
+            <div class="form-group">
+                <label for="sel1">Profil</label>
+                <select class="form-control" formControlName="profil" id="sel1">
+                    <option disabled selected>--</option>
+                    <option *ngFor="let profil of profils" [value]="profil.libelle">{{profil.libelle}}</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="firstname">Firstname</label>
+                    <input type="firstname" class="form-control" formControlName="firstname" id="firstname"  placeholder="firstname">
+                    <div *ngIf="registerForm.controls['firstname'].invalid && (registerForm.controls['firstname'].dirty || registerForm.controls['firstname'].touched)" class="alert alert-danger">
+                        <small *ngIf="registerForm.controls['firstname'].errors.required">
+                          Firstname is required
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="lastname">Lastname</label>
+                    <input type="text" class="form-control" formControlName="lastname" id="lastname" placeholder="lastname">
+                    <div *ngIf="registerForm.controls['lastname'].invalid && (registerForm.controls['lastname'].dirty || registerForm.controls['lastname'].touched)" class="alert alert-danger">
+                        <small *ngIf="registerForm.controls['lastname'].errors.required">
+                          lastname is required
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" formControlName="email" class="form-control" id="email" placeholder="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                <div *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)" class="alert alert-danger">
+                    <small *ngIf="registerForm.controls['email'].errors.required">
+                      email is required
+                    </small>
+                    <div *ngIf="registerForm.controls['email'].errors.email">Email must be a valid email address</div>
+                </div> 
+            </div>
+
+            
+            <div class="custom-file">
+                <input type="file" accept="image/x-png,image/gif,image/jpeg" class="custom-file-input" (change)="onFileSelect($event)" id="validatedCustomFile"
+                    required>
+                <label class="custom-file-label" for="validatedCustomFile">choose an avatar</label>
+            </div>
+            <div class="mt-4 button-form">
+                <button type="reset" class="btn btn-danger reset mb-4" (click)="onReset()" >reset</button>
+                <button type="submit"  class="btn btn-primary float-right submit mb-4" [disabled]="!registerForm.valid">Enregistrer</button>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+<div class="container mt-5 bg-light">
+    <div class="header mt-3 w-100">
+        <span>Referentiel List</span>
+        <span class="float-right mr-3 add"> <a [routerLink]="['/accueil/referentiel/add']">
+                <i-bs name="plus-circle-fill"></i-bs>
+            </a> </span>
+    </div>
+
+    <hr>
+    <div class="list-detail row shadow">
+        <div class="col-md-4 col-xl-4 mb-4 shadow" *ngFor="let item of referentiels; let i=index" id="htmtDATA"
+            #htmtDATA>
+            <!-- <button class="btn btn-danger btn-block" (click)="generatePdf(item.id)">Download PDF</button> -->
+            <div class="card shadow">
+                <div class="card-header"> {{item.libelle}}
+                    <div class="float-right">
+                        <span class="mr-2 dowload text-primary" (click)="generatePdf(item.id)">
+
+                            <i-bs name="download"></i-bs>
+                        </span>
+                        <span class="mr-2 text-danger">
+                            <i-bs name="x"></i-bs>
+                        </span>
+                        <a [routerLink]="['/accueil/referentiel', item.id ,'edit']">
+                            <span class="">
+                                <i-bs name="pen"></i-bs>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="accordion" id="accordionExample{{i}}">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{i}}">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#collapse'+i" aria-expanded="true"
+                                [attr.aria-controls]="'collapse'+i">
+                                Descriptif
+                            </button>
+                        </h2>
+                        <div id="collapse{{i}}" class="accordion-collapse collapse show"
+                            [attr.aria-labelledby]="'heading'+i" [attr.data-bs-parent]="'#accordionExample'+i">
+                            <div class="accordion-body">
+                                {{item.presentation}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#collapse'+(i+1000000)" aria-expanded="false"
+                                [attr.data-bs-target]="'#collapse'+(i+1000000)">
+                                Groupe Competence
+                            </button>
+                        </h2>
+                        <div id="collapse{{(i+1000000)}}" class="accordion-collapse collapse"
+                            aria-labelledby="headingTwo" [attr.data-bs-parent]="'#accordionExample'+i">
+                            <div class="accordion-body">
+                                <ul class="list-group" *ngIf="item.groupeCompetence">
+                                    <li class="list-group-item" *ngFor="let compet of item.groupeCompetence">
+                                        {{compet.libelle}} </li>
+                                </ul>
+                                <small *ngIf="!item.groupeCompetence"> Pas de competences </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#collapse'+(i+200000)" aria-expanded="false"
+                                [attr.aria-controls]="'collapse'+(i+200000)">
+                                Critère d'évaluation
+                            </button>
+                        </h2>
+                        <div id="collapse{{(i+200000)}}" class="accordion-collapse collapse"
+                            aria-labelledby="headingThree" [attr.data-bs-parent]="'#accordionExample'+i">
+                            <div class="accordion-body">
+                                {{ item.critereEvaluation }}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#collapse'+(i+300000)" aria-expanded="false"
+                                [attr.aria-controls]="'collapse'+(i+300000)">
+                                Critère d'admission
+                            </button>
+                        </h2>
+                        <div id="collapse{{(i+300000)}}" class="accordion-collapse collapse"
+                            aria-labelledby="headingThree" [attr.data-bs-parent]="'#accordionExample'+i">
+                            <div class="accordion-body">
+                                {{ item.critereAdmission }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#collapse'+(i+900000)" aria-expanded="false"
+                                [attr.aria-controls]="'collapse'+(i+900000)">
+                                Programme
+                            </button>
+                        </h2>
+                        <div id="collapse{{(i+900000)}}" class="accordion-collapse collapse"
+                            aria-labelledby="headingFive" [attr.data-bs-parent]="'#accordionExample'+i">
+                            <div class="accordion-body">
+                                <ngx-extended-pdf-viewer [base64Src]="item.programme" backgroundColor="#ffffff"
+                                    [height]="'90vh'" [useBrowserLocale]="false" [handTool]="false"
+                                    [showHandToolButton]="true">
+                                </ngx-extended-pdf-viewer>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

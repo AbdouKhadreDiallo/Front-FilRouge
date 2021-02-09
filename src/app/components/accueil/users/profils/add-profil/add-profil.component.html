@@ -1,0 +1,18 @@
+	<h1 class="bg-light ">Add Profil</h1>
+    <hr>
+    
+    <div class="list-users shadow bg-light mt-5">
+        <form action="" class="px-5 mb-4 col-md-6" [formGroup] = "addForm" (ngSubmit) = "addProfil()">
+            
+            <div class="form-group">
+                <label for="libelle">libelle</label>
+                <input type="text" class="form-control" [formControl]="addForm.controls['libelle']" id="libelle" placeholder="Libelle">
+            </div>
+           
+            <div class="mt-4 button-form">
+                <button (click)="resetData()" type="reset" class="btn btn-danger reset mb-4">reset</button>
+                <button type="submit" class="btn btn-primary float-right submit mb-4">Enregistrer</button>
+            </div>
+            
+        </form>
+    </div>

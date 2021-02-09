@@ -1,0 +1,64 @@
+<div class="col-2 vh-100  overflow-auto resize bg-dark float-left shadow mb-5 bg-white sidenav-width"
+    id="sticky-sidebar">
+    <div class="nav flex-column flex-nowrap repeat-y text-white p-2">
+
+        <ul *ngIf="this.userService.menuclicked=='user'">
+            <li class="nav-item  nav-style-links">
+                <a  [routerLink]="['/accueil/users_list']" class="nav-link">
+                    <span class="list text-dark">Utilisateurs</span>
+                </a>
+            </li>
+            <li class="nav-item nav-style-links">
+                <a [routerLink]="['/accueil/profil_list']" class="nav-link">
+                    <span class="list text-dark">Profils</span>
+                </a>
+            </li> 
+            <hr>
+            <li class="nav-item">
+                <a  href="" class="nav-link">
+                    <span class="list text-dark">Something</span>
+                </a>
+            </li>
+             
+        </ul>
+        <ul *ngIf="this.userService.menuclicked=='params'">
+            <li class="nav-item  nav-style-links">
+                <a  [routerLink]="['/accueil/promo']" class="nav-link">
+                    <span class="list text-dark">Promo</span>
+                </a>
+            </li>
+            <li class="nav-item nav-style-links">
+                <a [routerLink]="['/accueil/referentiel']" class="nav-link">
+                    <span class="list text-dark">Referentiels</span>
+                </a>
+            </li>
+            <li class="nav-item nav-style-links">
+                <a [routerLink]="['/accueil/groupeCompetence']" class="nav-link">
+                    <span class="list text-dark">Groupe de Competence</span>
+                </a>
+            </li>
+            <li class="nav-item nav-style-links">
+                <a [routerLink]="['/accueil/competence']" class="nav-link">
+                    <span class="list text-dark">Competence</span>
+                </a>
+            </li>
+            <li class="nav-item nav-style-links">
+                <a [routerLink]="['/accueil/profil_list']" class="nav-link">
+                    <span class="list text-dark">Groupe de Tags</span>
+                </a>
+            </li>
+            <li class="nav-item nav-style-links">
+                <a [routerLink]="['/accueil/profilSortie']" class="nav-link">
+                    <span class="list text-dark">Profil de Sortie</span>
+                </a>
+            </li>
+            <hr>
+            <li class="nav-item">
+                <a  href="" class="nav-link">
+                    <span class="list text-dark">Something</span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</div>

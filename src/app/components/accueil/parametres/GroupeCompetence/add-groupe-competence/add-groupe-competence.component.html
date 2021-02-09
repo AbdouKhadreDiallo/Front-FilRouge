@@ -1,0 +1,69 @@
+<div class=" mt-5 container bg-light ">
+    <h1 class="bg-light">Add Groupe Competence</h1>
+    <hr>
+    <div class="center bg-light">
+        <button class="btn btn-primary" [routerLink]="['/accueil/groupeCompetence']">Liste Groupe Competence</button>
+    </div>
+    <div class="list-users shadow bg-light mt-5">
+        <form action="" class="px-5 mb-4" [formGroup]="this.formGroup">
+            <fieldset>
+                <legend>ajout</legend>
+                <div class="form-group row">
+                    <label for="libelle" class="col-sm-2 col-form-label">Libelle</label>
+                    <div class="col-sm-7">
+                        <input type="text" formControlName="libelle" [(ngModel)]="libelle" class="form-control" id="libelle"
+                            placeholder="libelle">
+                        <small
+                            *ngIf="formGroup.controls['libelle'].invalid && (formGroup.controls['libelle'].touched || formGroup.controls['libelle'].dirty)"
+                            id="helpId" class="form-text text-danger show fade">Veuillez renseigner le libelle</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="descriptif" class="col-sm-2 col-form-label">Descriptif</label>
+                    <div class="col-sm-7">
+                        <textarea name="descriptif" formControlName="descriptif" id="descriptif" [(ngModel)]="descriptif" 
+                            class="form-control w-100 h-100" placeholder="Donner un descriptif"></textarea>
+                            <small
+                            *ngIf="formGroup.controls['descriptif'].invalid && (formGroup.controls['descriptif'].touched || formGroup.controls['descriptif'].dirty)"
+                            id="helpId" class="form-text text-danger">Veuillez renseigner un descriptif</small>
+                    </div>
+                </div>
+
+                <div class="ng-autocomplete form-group row">
+                    <label for="" class="col-sm-2 col-form-label">Competences</label>
+                    <div class="col-sm-7 ml-2 h-auto" >
+                        <ng-autocomplete [data]="listeLibelle" [searchKeyword]="keyword" class="w-100 h-100 compet"
+                        (keydown.enter)="onSkillsSetEnter()" formControlName="competences"   [itemTemplate]="itemTemplate"
+                        [notFoundTemplate]="notFoundTemplate" (selected)="onSkillsSetKeydown($event)">
+                    </ng-autocomplete>
+
+                    <ng-template #itemTemplate let-item>
+                        <a [innerHTML]="item.libelle"></a>
+                    </ng-template>
+
+                    <ng-template #notFoundTemplate let-notFound>
+                        <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                    </div>
+                    
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-2 roundedcorner" *ngFor="let oneCompetence of competences; let i = index">
+                        {{oneCompetence}}
+                        <i title="Supprimer ce referentiel" class="fa fa-times-circle" style="font-size:20px;color:red;"
+                            (click)="dropSkill(i)"></i>
+                    </div>
+
+                </div>
+                <div>
+                    <button type="reset" class="btn btn-danger" (click)="this.competences =[]">Reset</button>
+                    <button class="btn btn-primary ml-4" *ngIf="!currentGroupeCompetence" [disabled]="!formGroup.valid" (click)="onSubmit()" type="button">Soumettre</button>
+                    <button class="btn btn-primary ml-4" *ngIf="currentGroupeCompetence" (click)="onSubmit()" type="button">Modifier</button>
+                </div>
+            </fieldset>
+
+
+
+        </form>
+    </div>
+</div>

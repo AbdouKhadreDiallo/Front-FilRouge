@@ -1,0 +1,21 @@
+.custom-input{
+    height: 200px;
+}
+#competence{
+    height: 200px;
+}
+
+.roundedcorner {  
+    margin: 5px;  
+    padding: 5px;  
+    float: left;  
+    border-radius: 25px;  
+    border: 2px solid #73AD21;  
+}  
+.ng-autocomplete{
+    width: 100%;
+}
+
+.compet{
+    min-height: calc(1.5em + .75rem + 2px);
+}

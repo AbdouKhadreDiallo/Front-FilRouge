@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.contaier{
+    height: 100%;
+}
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+.espace-ajout{
+    background-color: rgb(223, 221, 221);
+    height: 50px;
+}
+.espace-ajout>button{
+    height: 100%;
+}

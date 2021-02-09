@@ -1,0 +1,59 @@
+<div class=" m-auto mt-5 bg-light row">
+	<div class="container mt-5 col-sm-6 bg-light">
+		<h1>ProfilSortie List</h1>
+		<hr>
+		<div class="list-users shadow mt-5">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">libelle</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let profil of profilSortie">
+						<th scope="row">{{ profil.id }}</th>
+						<td>{{ profil.libelle }}</td>
+						<td>
+							<a [routerLink]="['/accueil/profil', profil.id,'details']"
+								class="btn btn-sm btn-outline-info mr-2">Details</a>
+							<a [routerLink]="['/accueil/profilSortie', profil.id, 'edit']"
+								class="btn btn-sm btn-outline-warning">Edit</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="d-flex justify-content-between p-2">
+				<ngb-pagination
+                [(page)]="page"
+                [pageSize]="pageSize"
+                [collectionSize]="profilSortie.length">
+            </ngb-pagination>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-6 shadow">
+
+		<div class="overflow-auto mt-5 container bg-light ">
+			<h1 class="bg-light mt-2">Add Profil de Sortie</h1>
+			<hr>
+			<div class="list-users shadow bg-light mt-5">
+				<form action="" class="px-5 mb-4 col-md-6" [formGroup] = "addForm" (ngSubmit) = "onSubmit()">
+
+					<div class="form-group">
+						<label for="libelle">libelle</label>
+						<input type="text" class="form-control" id="libelle" placeholder="Libelle" [formControl]="addForm.controls['libelle']" [(ngModel)]="libelle" >
+					</div>
+
+					<div class="mt-4 button-form">
+						<button type="reset" (click)="resetForm()" class="btn btn-danger reset mb-4">reset</button>
+						<button type="submit" class="btn btn-primary float-right submit mb-4">Enregistrer</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

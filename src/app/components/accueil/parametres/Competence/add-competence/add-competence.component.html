@@ -1,0 +1,109 @@
+<div class=" mt-5 container bg-light ">
+    <h1 class="bg-light">Add Competence</h1>
+    <hr>
+    <div class="center bg-light">
+        <button class="btn btn-primary" [routerLink]="['/accueil/competence']">Liste Competence</button>
+    </div>
+    <div class="list-users shadow bg-light mt-5">
+        <form  class="px-5 mb-4" [formGroup]="addForm" (ngSubmit)="onSubmit()">
+            <fieldset>
+                <legend>ajout</legend>
+                <div class="form-group row" *ngIf="!this.currentCompetence">
+                    <label for="GrpeCompetence" class="col-md-3 col-form-label">Groupe de Competences</label>
+                    <div class="col-sm-7">
+                        <select class="form-control form-control-lg" formControlName="groupeCompetences">
+                            <option disabled>--</option>
+                            <option *ngFor="let grp of groupeCompetences" [value]="grp.id">{{grp.libelle}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="libelle" class="col-3 col-form-label">Libelle</label>
+                    <div class="col-sm-7">
+                        <input type="text" [(ngModel)]="libelle" formControlName="libelle" name="libelle" class="form-control" id="libelle" placeholder="Libelle">
+                         <small
+                            *ngIf="addForm.controls['libelle'].invalid && (addForm.controls['libelle'].touched || addForm.controls['libelle'].dirty)"
+                            id="helpId" class="form-text text-danger">Veuillez renseigner le libelle</small>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="libelle" class="col-3 col-form-label">Niveaux</label>
+                    <div class="col-md-7">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a href="#niveau1" class="nav-link active" data-toggle="tab">Niveau 1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#niveau2" class="nav-link" data-toggle="tab">Niveau 2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#niveau3" class="nav-link"  data-toggle="tab">Niveau 3</a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            <div class="fade tab-pane row show active" id="niveau1">
+                                <div class="col">
+                                    <h4 class="mt-2">Groupes  d'actions à réaliser</h4>
+                                    <textarea name="competence" [(ngModel)]="critereAction0" formControlName="critereAction0" id="competence" class="form-control w-100"></textarea>
+                                    <small
+                            *ngIf="addForm.controls['critereAction0'].invalid && (addForm.controls['critereAction0'].touched || addForm.controls['critereAction0'].dirty)"
+                            id="helpId" class="form-text text-danger">Veuillez renseigner le groupe d'action</small>
+                                </div>
+                                <div class="col">
+                                    <h4 class="mt-2">Critere Evaluation</h4>
+                                    <textarea name="competence" [(ngModel)]="critereEvaluation0"  formControlName="critereEvaluation0"  id="competence" class="form-control w-100"></textarea>
+                                    <small
+                            *ngIf="addForm.controls['critereEvaluation0'].invalid && (addForm.controls['critereEvaluation0'].touched || addForm.controls['critereEvaluation0'].dirty)"
+                            id="helpId" class="form-text text-danger">Veuillez renseigner le critere d'evaluation</small>
+                                </div>
+                            </div>
+                            <div class="fade tab-pane row show" id="niveau2">
+                                <div class="col">
+                                    <h4 class="mt-2">Groupes  d'actions à réaliser</h4>
+                                    <textarea name="competence" [(ngModel)]="critereAction1" formControlName="critereAction1"  id="competence" class="form-control w-100"></textarea>
+                                     <small
+                            *ngIf="addForm.controls['critereAction1'].invalid && (addForm.controls['critereAction1'].touched || addForm.controls['critereAction1'].dirty)"
+                            id="helpId" class="form-text text-danger">Veuillez renseigner le groupe d'action</small>
+                                </div>
+                                <div class="col">
+                                    <h4 class="mt-2">Critere Evaluation</h4>
+                                    <textarea name="competence" [(ngModel)]="critereEvaluation1" formControlName="critereEvaluation1"  id="competence" class="form-control w-100"></textarea>
+                                     <small
+                            *ngIf="addForm.controls['critereEvaluation1'].invalid && (addForm.controls['critereEvaluation1'].touched || addForm.controls['critereEvaluation1'].dirty)"
+                            id="helpId" class="form-text text-danger">Veuillez renseigner le critere d'evaluation</small>
+                                </div>
+                            </div>
+                            <div class="fade tab-pane row show" id="niveau3">
+                                <div class="col">
+                                    <h4 class="mt-2">Groupes  d'actions à réaliser</h4>
+                                    <textarea name="competence" [(ngModel)]="critereAction2" formControlName="critereAction2"  id="competence" class="form-control w-100"></textarea>
+                                     <small
+                            *ngIf="addForm.controls['critereAction2'].invalid && (addForm.controls['critereAction2'].touched || addForm.controls['critereAction2'].dirty)"
+                            id="helpId" class="form-text text-danger">Veuillez renseigner le groupe d'action</small>
+                                </div>
+                                <div class="col">
+                                    <h4 class="mt-2">Critere Evaluation</h4>
+                                    <textarea name="competence" [(ngModel)]="critereEvaluation2" formControlName="critereEvaluation2"  id="competence" class="form-control w-100"></textarea>
+                                     <small
+                            *ngIf="addForm.controls['critereEvaluation2'].invalid && (addForm.controls['critereEvaluation2'].touched || addForm.controls['critereEvaluation2'].dirty)"
+                            id="helpId" class="form-text text-danger">Veuillez renseigner le critere d'evaluation</small>
+                                </div>
+                            </div>
+            
+                             
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 button-form text-center">
+                    <button type="submit" [disabled]="!addForm.valid" *ngIf="!currentCompetence" class="btn btn-primary w-25 submit mb-4">Soumettre</button>
+                    <button type="submit" *ngIf="currentCompetence" class="btn btn-primary w-25 submit mb-4"> Modifier </button>
+                </div>
+            </fieldset>
+
+
+
+        </form>
+    </div>
+</div>

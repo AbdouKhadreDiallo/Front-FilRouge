@@ -1,0 +1,85 @@
+<div class=" mt-5 container bg-light ">
+    <h1 class="bg-light">Add Referentiel</h1>
+    <hr>
+    <div class="center bg-light">
+        <button class="btn btn-primary" [routerLink]="['/accueil/referentiel']">Liste Referentiel</button>
+    </div>
+    <div class="list-users shadow bg-light mt-3">
+        <form action="" class="px-5 mb-4" [formGroup]="this.addForm" (ngSubmit)="onSubmit()">
+            <fieldset>
+                <legend>ajout</legend>
+                <div class="form-group row">
+                    <label for="libelle" class="col-sm-2 col-form-label">Libelle</label>
+                    <div class="col-sm-7">
+                        <input type="text" formControlName="libelle" [(ngModel)]="libelle" class="form-control" id="libelle" placeholder="libelle">
+                        <small
+                            *ngIf="addForm.controls['libelle'].invalid && (addForm.controls['libelle'].touched || addForm.controls['libelle'].dirty)"
+                            id="helpId" class="form-text text-danger show fade">Veuillez renseigner le libelle</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="presentation" class="col-sm-2 col-form-label">Présentation</label>
+                    <div class="col-sm-7">
+                       <textarea name="presentation" [(ngModel)]="presentation" id="presentation" formControlName="presentation" class="form-control w-100 h-100" placeholder="Donner la Présentation"></textarea>
+                       <small
+                            *ngIf="addForm.controls['presentation'].invalid && (addForm.controls['presentation'].touched || addForm.controls['presentation'].dirty)"
+                            id="helpId" class="form-text text-danger show fade">Veuillez renseigner la présentation</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="ng-autocomplete">
+                        <ng-autocomplete [data]="listeLibelle" [searchKeyword]="keyword"formControlName="groupeCompetences" [itemTemplate]="itemTemplate"
+                            [notFoundTemplate]="notFoundTemplate" (selected)="onSkillsSetKeydown($event)">
+                        </ng-autocomplete>
+    
+                        <ng-template #itemTemplate let-item>
+                            <a [innerHTML]="item.libelle"></a>
+                        </ng-template>
+    
+                        <ng-template #notFoundTemplate let-notFound>
+                            <div [innerHTML]="notFound"></div>
+                        </ng-template>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-2 roundedcorner" *ngFor="let oneCompetence of GrpCompetences; let i = index">
+                            {{oneCompetence}}
+                            <i title="Supprimer ce referentiel" class="fa fa-times-circle"
+                                style="font-size:20px;color:red;" (click)="dropSkill(i)"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="libelle" class="col-sm-2 col-form-label">Programme</label>
+                    <div class="col-sm-7">
+                        <label class="custom-file-label" for="validatedCustomFile">Programme</label>
+                       <input type="file" accept=".pdf" class="custom-file-input" (change)="onFileSelect($event)" id="validatedCustomFile" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="critereEvaluation" class="col-sm-2 col-form-label">Critere Evaluation</label>
+                    <div class="col-sm-7">
+                       <textarea name="critereEvaluation" [(ngModel)]="critereEvaluation" id="critereEvaluation" formControlName="critereEvaluation" class="form-control w-100 h-100" placeholder="Donner un descriptif"></textarea>
+                       <small
+                            *ngIf="addForm.controls['critereEvaluation'].invalid && (addForm.controls['critereEvaluation'].touched || addForm.controls['critereEvaluation'].dirty)"
+                            id="helpId" class="form-text text-danger show fade">Veuillez renseigner la présentation</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="critereAdmission" class="col-sm-2 col-form-label">Critere Admission</label>
+                    <div class="col-sm-7">
+                       <textarea name="critereAdmission" [(ngModel)]="critereAction" id="critereAdmission" formControlName="critereAdmission" class="form-control w-100 h-100" placeholder="Donner un descriptif"></textarea>
+                       <small
+                            *ngIf="addForm.controls['critereAdmission'].invalid && (addForm.controls['critereAdmission'].touched || addForm.controls['critereAdmission'].dirty)"
+                            id="helpId" class="form-text text-danger show fade">Veuillez renseigner la présentation</small>
+                    </div>
+                </div>
+                <div class="mt-4 button-form text-center">
+                    <button type="submit" class="btn btn-primary w-25 submit mb-4">Soumettre</button>
+                </div>
+            </fieldset>
+            
+           
+
+        </form>
+    </div>
+</div>

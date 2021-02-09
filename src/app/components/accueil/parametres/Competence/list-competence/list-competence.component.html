@@ -1,0 +1,53 @@
+<div class="container mt-5 bg-light">
+    <div class="header mt-3 w-100 text-center">
+        <span class="font-weight-bold title">Liste des Competences</span>
+        <span class="float-right mr-3 add"> <a [routerLink]="['/accueil/competence/add']">
+                <i-bs name="plus-circle-fill"></i-bs>
+            </a> </span>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-5 compet">
+            <select class="form-control" name="" id="" (change)="choiceGroupe()" [(ngModel)]="id">
+                <option disabled>--</option>
+                <option *ngFor="let item of GroupeCompetence; let i = index" value="{{ item.id }}" [selected]="item.id === 1" >{{ item.libelle }}</option>
+            </select>
+            <ul class="list-group list-group-flush border-bottom-0" *ngIf="this.oneGroupCompetence">
+
+                <li class="list-group-item border-bottom-0 mb-0" *ngFor="let item of oneGroupCompetence.competences"
+                    (click)="clickedCompetence(item.id)">
+                    <a href="#{{ libelle }}" class="nav-link active" data-toggle="tab"> {{item.libelle }}</a>
+                    <div class="float-right ml-5">
+                        <a [routerLink] = "['/accueil/competence', item.id, 'edit']" class="btn btn-sm btn-outline-warning">Edit</a>
+                    </div>
+                </li>
+            </ul>
+            
+        </div>
+
+        <div class="col-md-6 tab-content">
+            <div class="fade tab-pane row show active" id="{{ libelle }}" *ngIf="this.competence">
+                <ul class="nav nav-tabs" >
+                    <li class="list-item" *ngFor="let item of competence.niveaux; let i=index"  (click)="clickedNiveau(item.id)">
+                        <a href="#{{ item.id }}" class="nav-link" [ngClass]="{'active': i==0}" data-toggle="tab" *ngIf="item">Niveau {{i+1}}</a>
+                        <p *ngIf="!item"> Pas de niveau </p>
+                       
+                    </li>
+                   
+                </ul>
+                
+                <div class="tab-content" *ngIf="this.niveauClicked">
+                    <div class="fade tab-pane row show active"  id="{{niveauClicked.id}}" >
+                        <div class="col">
+                            <h4 class="mt-2">Groupes d'actions à réaliser</h4>
+                            <p> {{niveauClicked.groupeAction}}</p>
+                        </div>
+                        <div class="col">
+                            <h4 class="mt-2">Critere Evaluation</h4>
+                            <p>{{niveauClicked.critereEvaluation }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

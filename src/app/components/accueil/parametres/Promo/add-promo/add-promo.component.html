@@ -1,0 +1,218 @@
+<div class="row justify-content-center">
+    <div class="col-md-8 form-group">
+        <input type="file" class="form-control" (change)="onFileChange($event)" placeholder="Upload file">
+        <input type="button" value="click" class="btn btn-primary" (click)="save()">
+    </div>
+    <div class="col-sm-9  text-center p-0  mb-2">
+        <div class="card px-0 pb-0  mb-3">
+            <h2 id="heading">Sign Up Your User Account</h2>
+            <form id="msform" class="m-4" [formGroup]="addReference" (ngSubmit)="onSubmit()">
+                <!-- progressbar -->
+                <ul id="progressbar">
+                    <li class="active" id="account"><strong>Account</strong></li>
+                    <li id="personal"><strong>Personal</strong></li>
+                    <li id="payment"><strong>Image</strong></li>
+                    <li id="confirm"><strong>Finish</strong></li>
+                </ul>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                </div> <br> <!-- fieldsets -->
+                <fieldset>
+                    <div class="form-card">
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="titre">Choix de langue </label>
+                            <div class="col-sm-9">
+                                <select name="" id="" class="form-control" formControlName="langue">
+                                    <option value="français" selected>Français</option>
+                                    <option value="anglais">Anglais</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="titre">Titre </label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" formControlName="titre" name="titre" id="titre"
+                                    placeholder="titre" />
+                                <small
+                                    *ngIf="addReference.controls['titre'].invalid && (addReference.controls['titre'].touched || addReference.controls['titre'].dirty)"
+                                    id="helpId" class="form-text text-danger show fade">Veuillez renseigner le
+                                    titre</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="description">Description de la promotion
+                            </label>
+                            <div class="col-sm-9">
+                                <textarea name="description" formControlName="description"
+                                    class="form-control w-100 h-100"
+                                    placeholder="Ecriver ici une description rapide, simple et concrete"></textarea>
+                                    <small
+                                    *ngIf="addReference.controls['description'].invalid && (addReference.controls['description'].touched || addReference.controls['description'].dirty)"
+                                    id="helpId" class="form-text text-danger show fade">Veuillez renseigner la description
+                                    </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="lieu">Lieu de la promotion </label>
+                            <div class="col-sm-9">
+                                <!-- <textarea name="description" class="form-control w-100 h-100" placeholder="Ecriver ici une description rapide, simple et concrete"></textarea> -->
+                                <input type="text" class="form-control" formControlName="lieu" name="lieu" id="lieu"
+                                    placeholder="Indiquer la region dans laquelle se trouve la promotion" />
+                                    <small
+                                    *ngIf="addReference.controls['lieu'].invalid && (addReference.controls['lieu'].touched || addReference.controls['lieu'].dirty)"
+                                    id="helpId" class="form-text text-danger show fade">Veuillez renseigner le niveau
+                                    </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="referenceAgate">Référence Agate </label>
+                            <div class="col-sm-9">
+                                <!-- <textarea name="description" class="form-control w-100 h-100" placeholder="Ecriver ici une description rapide, simple et concrete"></textarea> -->
+                                <input type="text" class="form-control" formControlName="referenceAgate"
+                                    name="referenceAgate" id="referenceAgate" placeholder="La réference Agate" />
+                                    <small
+                                    *ngIf="addReference.controls['referenceAgate'].invalid && (addReference.controls['referenceAgate'].touched || addReference.controls['referenceAgate'].dirty)"
+                                    id="helpId" class="form-text text-danger show fade">Veuillez renseigner la référence agate
+                                    </small>
+                            </div>
+                        </div>
+
+                    </div> <input type="button" name="next" class="next action-button" value="Next" />
+                </fieldset>
+                <fieldset>
+                    <div class="form-card">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="titre">Choix de la fabrique </label>
+                            <div class="col-sm-9">
+                                <select name="" id="" class="form-control" formControlName="fabrique">
+                                    <option value="ODC" selected>ODC</option>
+                                    <option value="Volkeno">Volkeno</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-6 row">
+                                <label for="dateDebut" class="col-4 col-form-label mr-0">Date Debut</label>
+                                <div class="col ml-0">
+                                    <input class="form-control" type="date" formControlName="dateDebut" name="dateDebut"
+                                        id="dateDebut">
+                                        <small
+                                    *ngIf="addReference.controls['dateDebut'].invalid && (addReference.controls['dateDebut'].touched || addReference.controls['dateDebut'].dirty)"
+                                    id="helpId" class="form-text text-danger show fade">Veuillez renseigner la référence agate
+                                    </small>
+                                </div>
+
+                            </div>
+                            <div class="col-6 row">
+                                <label for="dateFin" class="col-4 col-form-label mr-0">Date Fin</label>
+                                <div class="col ml-0">
+                                    <input class="form-control" formControlName="dateFinProvisoire" type="date"
+                                        name="dateFin" id="dateFin">
+                                        <small
+                                    *ngIf="addReference.controls['dateFinProvisoire'].invalid && (addReference.controls['dateFinProvisoire'].touched || addReference.controls['dateFinProvisoire'].dirty)"
+                                    id="helpId" class="form-text text-danger show fade">Veuillez renseigner la référence agate
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="mb-3"> Reference </div>
+                            <div class="row ref-container">
+
+                                <div class="col-md-2 roundedcorner mr-3 mb-3"
+                                    *ngFor="let item of referentiel; let i =index">
+                                    {{item}}
+                                    <i title="Supprimer ce referentiel" class="fa fa-times-circle"
+                                        style="font-size:20px;color:red;" (click)="dropSkill(i)"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <input type="button" name="next" class="next action-button" value="Next" /> <input type="button"
+                        name="previous" class="previous action-button-previous" value="Previous" />
+                </fieldset>
+                <fieldset>
+                    <div class="form-card">
+                        <div class="form-group row">
+                            <label for="avatar" class="col-sm-2 col-form-label">Avatar</label>
+                            <div class=" col-sm-9">
+                                <!-- <input type="file" (change)="onFileSelect($event)"
+                                    accept="image/x-png,image/gif,image/jpeg" class="custom-file-input" id="avatar"
+                                    required>
+                                <label class="custom-file-label" for="validatedCustomFile">choose an avatar</label> -->
+                                <input type="file" class="form-control" accept="image/x-png,image/gif,image/jpeg" (change)="onFileSelect($event)" placeholder="Upload avatar">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <h2>Ajouter des apprenants</h2>
+                                <ng-autocomplete [data]="listApprenant" [searchKeyword]="keyword"
+                                    class="w-100 h-100 compet" (keydown.enter)="onSkillsSetEnter()"
+                                    formControlName="apprenant" [itemTemplate]="itemTemplate"
+                                    [notFoundTemplate]="notFoundTemplate" (selected)="onSkillsSetKeydown($event)">
+                                </ng-autocomplete>
+
+                                <ng-template #itemTemplate let-item>
+                                    <a [innerHTML]="item.email"></a>
+                                </ng-template>
+
+                                <ng-template #notFoundTemplate let-notFound>
+                                    <div [innerHTML]="notFound"></div>
+                                </ng-template>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <div class="form-group row">
+                                        <label for="Excell" class="col-sm-2 col-form-label"> Fichier excell </label>
+                                        <div class=" col-sm-9">
+                                            
+                                                <input type="file" class="form-control" (change)="onExcellSelect($event)" (change)="onFileChange($event)" placeholder="Upload file">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ref-container row">
+
+                                    <div class="col-md-2 roundedcorner mr-3 mb-3" *ngFor="let item of tabApprenant">
+                                        {{item}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <input type="submit" name="next" class="next action-button" value="Submit" />
+                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                </fieldset>
+                <fieldset>
+                    <div class="form-card">
+                        <div class="row">
+                            <div class="col-7">
+                                <h2 class="fs-title">Finish:</h2>
+                            </div>
+                            <div class="col-5">
+                                <h2 class="steps">Step 4 - 4</h2>
+                            </div>
+                        </div> <br><br>
+                        <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2> <br>
+                        <div class="row justify-content-center">
+                            <div class="col-3"> <img src="https://i.imgur.com/GwStPmg.png" class="fit-image"> </div>
+                        </div> <br><br>
+                        <div class="row justify-content-center">
+                            <div class="col-7 text-center">
+                                <h5 class="purple-text text-center">You Have Successfully Signed Up</h5>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
